@@ -24,7 +24,13 @@
     "teardown.js"
   ],
   "main": "src/index.js",
-  "keywords": [],
+  "keywords": [
+    "jest",
+    "dynamodb",
+    "dynamodb local",
+    "jest preset",
+    "jest environment"
+  ],
   "dependencies": {
     "aws-sdk": "2.437.0",
     "cwd": "0.10.0",
