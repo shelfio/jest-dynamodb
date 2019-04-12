@@ -15,7 +15,7 @@
   "scripts": {
     "coverage": "jest --coverage",
     "lint": "eslint . --fix",
-    "test": "export ENVIRONMENT=local && jest src --runInBand"
+    "test": "export ENVIRONMENT=local && jest . --runInBand"
   },
   "files": [
     "environment.js",
@@ -37,6 +37,9 @@
     "jest": "24.7.1",
     "lint-staged": "8.1.5",
     "prettier": "1.16.4"
+  },
+  "jest": {
+    "preset": "./jest-preset.js"
   },
   "husky": {
     "hooks": {
