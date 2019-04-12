@@ -71,6 +71,10 @@ it('should insert item into table', async () => {
 - [DynamoDB Local Usage Notes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html)
 - [Create Table API](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html#createTable-property)
 
+## Used by
+
+- [dynamodb-parallel-scan](https://github.com/shelfio/dynamodb-parallel-scan)
+
 ## License
 
 MIT © [Shelf](https://shelf.io)
