@@ -19,7 +19,7 @@
   },
   "files": [
     "environment.js",
-    "jest-preset.json",
+    "jest-preset.js",
     "setup.js",
     "teardown.js"
   ],
