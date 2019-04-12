@@ -75,6 +75,10 @@ it('should insert item into table', async () => {
 
 - [dynamodb-parallel-scan](https://github.com/shelfio/dynamodb-parallel-scan)
 
+## See Also
+
+- [jest-mongodb](https://github.com/shelfio/jest-mongodb)
+
 ## License
 
 MIT © [Shelf](https://shelf.io)
