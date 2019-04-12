@@ -18,12 +18,16 @@
     "test": "export ENVIRONMENT=local && jest src --runInBand"
   },
   "files": [
-    "src"
+    "environment.js",
+    "jest-preset.json",
+    "setup.js",
+    "teardown.js"
   ],
   "main": "src/index.js",
   "keywords": [],
   "dependencies": {
     "aws-sdk": "2.437.0",
+    "cwd": "0.10.0",
     "dynamodb-local": "0.0.25"
   },
   "devDependencies": {
@@ -33,9 +37,6 @@
     "jest": "24.7.1",
     "lint-staged": "8.1.5",
     "prettier": "1.16.4"
-  },
-  "jest": {
-    "testEnvironment": "node"
   },
   "husky": {
     "hooks": {
