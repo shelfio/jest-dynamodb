@@ -2,13 +2,13 @@
 
 > Jest preset to run DynamoDB Local
 
-## Install
+## Usage
+
+### 0. Install
 
 ```
 $ yarn add @shelf/jest-dynamodb --dev
 ```
-
-## Usage
 
 ### 1. Create `jest.config.js`
 
