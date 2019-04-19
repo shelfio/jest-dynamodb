@@ -37,7 +37,7 @@
     "dynamodb-local": "0.0.26"
   },
   "devDependencies": {
-    "@shelf/eslint-config": "0.2.3",
+    "@shelf/eslint-config": "0.3.1",
     "eslint": "5.16.0",
     "husky": "1.3.1",
     "jest": "24.7.1",
