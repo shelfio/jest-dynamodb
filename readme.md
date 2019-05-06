@@ -68,7 +68,7 @@ it('should insert item into table', async () => {
 ## Troubleshooting
 
 <details>
-<summary>`UnknownError: Not Found`</summary>
+<summary>UnknownError: Not Found</summary>
 
 Perhaps something is using your port 8000.
 
