@@ -65,6 +65,12 @@ it('should insert item into table', async () => {
 });
 ```
 
+## Troubleshooting
+
+### `UnknownError: Not Found`
+
+Perhaps something is using your port 8000.
+
 ## Read
 
 - [dynamodb-local](https://github.com/rynop/dynamodb-local)
