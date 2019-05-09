@@ -3,7 +3,7 @@ const cwd = require('cwd');
 const DynamoDB = require('aws-sdk/clients/dynamodb');
 const DynamoDbLocal = require('dynamodb-local');
 const defaultPort = 8000;
-const {port} = require(resolve(cwd(), 'jest-dynamodb-config.js'));
+let {port} = require(resolve(cwd(), 'jest-dynamodb-config.js'));
 if (typeof port === 'undefined' || port === null) {
   port = defaultPort;
 }
