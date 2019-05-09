@@ -14,7 +14,8 @@ const dynamoDB = new DynamoDB({
 });
 
 module.exports = async function() {
-  global.__DYNAMODB__ = await DynamoDbLocal.launch(8000, null, ['-sharedDb']);
+  const {port} = require(resolve(cwd(), 'jest-dynamodb-config.js'));
+  global.__DYNAMODB__ = await DynamoDbLocal.launch(port || 8000, null, ['-sharedDb']);
 
   await createTables();
 };
