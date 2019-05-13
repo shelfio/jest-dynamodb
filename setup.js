@@ -5,7 +5,8 @@ const DynamoDbLocal = require('dynamodb-local');
 const config = require(resolve(cwd(), 'jest-dynamodb-config.js'));
 
 const DEFAULT_PORT = 8000;
-const port = typeof port === 'undefined' || port === null ? DEFAULT_PORT : config.port;
+const port =
+  typeof config.port === 'undefined' || config.port === null ? DEFAULT_PORT : config.port;
 
 // aws-sdk requires access and secret key to be able to call DDB
 process.env.AWS_ACCESS_KEY_ID = 'access-key';
