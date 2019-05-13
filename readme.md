@@ -32,7 +32,8 @@ module.exports = {
       ProvisionedThroughput: {ReadCapacityUnits: 1, WriteCapacityUnits: 1}
     }
     // etc
-  ]
+  ],
+  port: 8000
 };
 ```
 
@@ -70,7 +71,7 @@ it('should insert item into table', async () => {
 <details>
 <summary>UnknownError: Not Found</summary>
 
-Perhaps something is using your port 8000.
+Perhaps something is using your port specified in `jest-dynamodb-config.js`.
 
 </details>
 
