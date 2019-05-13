@@ -1,6 +1,6 @@
 {
   "name": "@shelf/jest-dynamodb",
-  "version": "1.1.0",
+  "version": "1.0.2",
   "description": "Run your tests using Jest & DynamoDB local",
   "license": "MIT",
   "repository": "shelfio/jest-dynamodb",
