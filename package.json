@@ -41,8 +41,8 @@
     "eslint": "5.16.0",
     "husky": "2.4.0",
     "jest": "24.8.0",
-    "lint-staged": "8.1.7",
-    "prettier": "1.17.1"
+    "lint-staged": "8.2.0",
+    "prettier": "1.18.0"
   },
   "jest": {
     "preset": "./jest-preset.js"
