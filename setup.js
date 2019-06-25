@@ -25,7 +25,8 @@ module.exports = async function() {
 };
 
 async function createTables() {
-  const {tables} = require(resolve(cwd(), 'jest-dynamodb-config.js'));
+  const config = require(resolve(cwd(), 'jest-dynamodb-config.js'));
+  const {tables} = typeof config === 'function' ? await config() : config;
 
   return Promise.all(tables.map(table => dynamoDB.createTable(table).promise()));
 }

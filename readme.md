@@ -20,7 +20,9 @@ module.exports = {
 
 ### 2. Create `jest-dynamodb-config.js`
 
-See [Create Table API](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html#createTable-property)
+See [Create Table API](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html#createTable-property).
+
+You can set up tables as an object:
 
 ```js
 module.exports = {
@@ -34,6 +36,23 @@ module.exports = {
     // etc
   ],
   port: 8000
+};
+```
+
+Or as an async function (particularly useful when resolving DynamoDB setup dynamically from `serverless.yml`):
+
+```js
+module.exports = async () => {
+  await serverless.init();
+  const service = await serverless.variables.populateService();
+  const tables = service.resources.Resources.filter(r => r.Type === 'AWS::DynamoDB::Table').map(
+    r => r.Properties
+  );
+
+  return {
+    tables,
+    port: 8000
+  };
 };
 ```
 
