@@ -10,6 +10,8 @@
 $ yarn add @shelf/jest-dynamodb --dev
 ```
 
+Make sure `aws-sdk` is installed as a peer dependency.
+
 ### 1. Create `jest.config.js`
 
 ```js
