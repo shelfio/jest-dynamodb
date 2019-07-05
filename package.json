@@ -42,9 +42,9 @@
     "@shelf/eslint-config": "0.3.10",
     "aws-sdk": "2.437.0",
     "eslint": "6.0.1",
-    "husky": "2.7.0",
+    "husky": "3.0.0",
     "jest": "24.8.0",
-    "lint-staged": "8.2.1",
+    "lint-staged": "9.0.2",
     "prettier": "1.18.2"
   },
   "jest": {
