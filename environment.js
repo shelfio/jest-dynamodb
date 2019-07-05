@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const NodeEnvironment = require('jest-environment-node');
+const debug = require('debug')('jest-dynamodb');
 
 module.exports = class DynamoDBEnvironment extends NodeEnvironment {
   constructor(config) {
@@ -7,13 +8,13 @@ module.exports = class DynamoDBEnvironment extends NodeEnvironment {
   }
 
   async setup() {
-    console.log('Setup DynamoDB Test Environment');
+    debug('Setup DynamoDB Test Environment');
 
     await super.setup();
   }
 
   async teardown() {
-    console.log('Teardown DynamoDB Test Environment');
+    debug('Teardown DynamoDB Test Environment');
 
     await super.teardown();
   }
