@@ -33,6 +33,7 @@
   ],
   "dependencies": {
     "cwd": "0.10.0",
+    "debug": "^4.1.1",
     "dynamodb-local": "0.0.29"
   },
   "peerDependencies": {
