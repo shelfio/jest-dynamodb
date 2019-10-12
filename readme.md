@@ -45,17 +45,22 @@ Or as an async function (particularly useful when resolving DynamoDB setup dynam
 
 ```js
 module.exports = async () => {
+  const serverless = new (require('serverless'))();
+
   await serverless.init();
   const service = await serverless.variables.populateService();
-  const tables = service.resources.Resources.filter(r => r.Type === 'AWS::DynamoDB::Table').map(
-    r => r.Properties
-  );
+  const resources = service.resources.Resources;
+
+  const tables = Object.keys(resources)
+    .map(name => resources[name])
+    .filter(r => r.Type === 'AWS::DynamoDB::Table')
+    .map(r => r.Properties);
 
   return {
     tables,
     port: 8000
-  };
-};
+  }
+}
 ```
 
 ### 3. Configure DynamoDB client
