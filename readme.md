@@ -101,6 +101,10 @@ Perhaps something is using your port specified in `jest-dynamodb-config.js`.
 
 </details>
 
+## Alternatives
+
+- [jest-dynalite](https://github.com/freshollie/jest-dynalite) - a much lighter version which spins up an instance for each runner & doesn't depend on Java
+
 ## Read
 
 - [dynamodb-local](https://github.com/rynop/dynamodb-local)
