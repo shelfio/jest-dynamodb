@@ -63,6 +63,43 @@ module.exports = async () => {
 }
 ```
 
+Or read table definitions from a CloudFormation template (example handles a !Sub on TableName, i.e. TableName: !Sub "${env}-users" ):
+
+```js
+
+const yaml = require('js-yaml');
+const fs   = require('fs');
+var CLOUDFORMATION_SCHEMA = require('cloudformation-js-yaml-schema').CLOUDFORMATION_SCHEMA;
+
+module.exports = async () => {
+
+  const cf = yaml.safeLoad(
+    fs.readFileSync('../cf-templates/example-stack.yaml', 'utf8'),
+    {schema: CLOUDFORMATION_SCHEMA }
+  );
+  var tables = [];
+  Object.keys(cf.Resources).forEach((item) => {
+    tables.push(cf.Resources[item]);
+  });
+
+  tables = tables
+    .filter(r => r.Type === 'AWS::DynamoDB::Table')
+    .map((r) => {
+      let table = r.Properties;
+      if (typeof x.TableName === "object") {
+        table.TableName = table.TableName.data.replace('${env}','test');
+      }
+      delete table.TimeToLiveSpecification; //errors on dynamo-local
+      return table;
+    });
+  
+  return {
+    tables,
+    port: 8000
+  };
+};
+```
+
 ### 3. Configure DynamoDB client
 
 ```js
