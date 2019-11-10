@@ -69,7 +69,7 @@ Or read table definitions from a CloudFormation template (example handles a !Sub
 
 const yaml = require('js-yaml');
 const fs   = require('fs');
-var CLOUDFORMATION_SCHEMA = require('cloudformation-js-yaml-schema').CLOUDFORMATION_SCHEMA;
+const {CLOUDFORMATION_SCHEMA} = require('cloudformation-js-yaml-schema');
 
 module.exports = async () => {
 
