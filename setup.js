@@ -15,11 +15,15 @@ module.exports = async function() {
   const {tables, port: port = DEFAULT_PORT, options: options = DEFAULT_OPTIONS} =
     typeof config === 'function' ? await config() : config;
   const dynamoDB = new DynamoDB({
-    endpoint: 'localhost:' + port,
+    endpoint: `localhost:${port}`,
     sslEnabled: false,
-    region: 'local-env'
+    region: 'local-env',
+    logger: console
   });
-  global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options);
+
+  const verbose = true;
+
+  global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options, verbose);
 
   await createTables(dynamoDB, tables);
 };
