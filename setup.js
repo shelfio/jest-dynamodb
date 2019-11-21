@@ -12,18 +12,17 @@ const DEFAULT_OPTIONS = ['-sharedDb'];
 
 module.exports = async function() {
   const config = require(resolve(cwd(), 'jest-dynamodb-config.js'));
-  const {tables, port: port = DEFAULT_PORT, options: options = DEFAULT_OPTIONS} =
+  const {tables, port: port = DEFAULT_PORT, options: options = DEFAULT_OPTIONS, clientConfig} =
     typeof config === 'function' ? await config() : config;
+
   const dynamoDB = new DynamoDB({
     endpoint: `localhost:${port}`,
     sslEnabled: false,
     region: 'local-env',
-    logger: console
+    ...clientConfig
   });
 
-  const verbose = true;
-
-  global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options, verbose);
+  global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options);
 
   await createTables(dynamoDB, tables);
 };
