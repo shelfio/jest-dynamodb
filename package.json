@@ -23,7 +23,6 @@
     "setup.js",
     "teardown.js"
   ],
-  "main": "src/index.js",
   "keywords": [
     "jest",
     "dynamodb",
