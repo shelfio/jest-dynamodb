@@ -12,8 +12,12 @@ const DEFAULT_OPTIONS = ['-sharedDb'];
 
 module.exports = async function() {
   const config = require(resolve(cwd(), 'jest-dynamodb-config.js'));
-  const {tables, port: port = DEFAULT_PORT, options: options = DEFAULT_OPTIONS, clientConfig} =
+  const {tables, port: port = DEFAULT_PORT, options: options = DEFAULT_OPTIONS, clientConfig, installerConfig} =
     typeof config === 'function' ? await config() : config;
+
+  if (installerConfig) {
+    DynamoDbLocal.configureInstaller(installerConfig);
+  }
 
   const dynamoDB = new DynamoDB({
     endpoint: `localhost:${port}`,
