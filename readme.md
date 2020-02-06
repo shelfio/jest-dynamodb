@@ -22,7 +22,54 @@ module.exports = {
 
 ### 2. Create `jest-dynamodb-config.js`
 
-See [Create Table API](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html#createTable-property).
+#### 2.1 Properties
+
+##### tables
+
+- Type: `object[]`
+- Required: `true`
+
+Array of createTable params.
+
+- [Create Table API](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html#createTable-property).
+
+##### port
+
+- Type: `number`
+- Required: `false`
+
+Port number. The default port number is `8000`.
+
+##### options
+
+- Type: `string[]`
+- Required: `false`
+
+Addtional arguments for dynamodb-local. The default value is `['-sharedDb']`.
+
+- [dynamodb-local](https://github.com/rynop/dynamodb-local)
+- [DynamoDB Local Usage Notes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html)
+
+##### clientConfig
+
+- Type: `object`
+- Required: `false`
+
+Constructor params of DynamoDB client.
+
+- [Constructor Property](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html#constructor-property)
+
+##### installerConfig
+
+- Type: `{installPath?: string, downloadUrl?: string}`
+- Required: `false`
+
+- `installPath` defines the location where dynamodb-local is installed or will be installed.
+- `downloadUrl` defines the url of dynamodb-local package.
+
+The default value is defined at https://github.com/rynop/dynamodb-local/blob/2e6c1cb2edde4de0dc51a71c193c510b939d4352/index.js#L16-L19
+
+#### 2.2 Examples
 
 You can set up tables as an object:
 
