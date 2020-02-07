@@ -1,57 +1,30 @@
-version: 2
+version: 2.1
 
 jobs:
-  build:
-    docker:
-      - image: circleci/node:10-browsers
-
-    working_directory: ~/repo
-
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-
-      - run: yarn
-
-      - save_cache:
-          paths:
-            - /tmp/dynamodb-local
-            - node_modules
-            - yarn.lock
-          key: v1-dependencies-{{ checksum "package.json" }}
-
   test_without_db:
-    docker:
-      - image: circleci/node:10-browsers
-
     working_directory: ~/repo
+    docker:
+      - image: circleci/node:12-browsers
 
     steps:
       - checkout
+      - run: yarn
       - run: yarn test
 
   test_with_db:
-    docker:
-      - image: circleci/node:10-browsers
-      - image: circleci/dynamodb:oracle
-
     working_directory: ~/repo
+    docker:
+      - image: circleci/node:12-browsers
+      - image: circleci/dynamodb:oracle
 
     steps:
       - checkout
+      - run: yarn
       - run: yarn test
 
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
-      - test_with_db:
-          requires:
-            - build
-      - test_without_db:
-          requires:
-            - build
+      - test_with_db
+      - test_without_db
