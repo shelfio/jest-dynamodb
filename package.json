@@ -42,11 +42,11 @@
   "devDependencies": {
     "@shelf/eslint-config": "0.16.0",
     "aws-sdk": "2.631.0",
-    "eslint": "6.8.0",
+    "eslint": "7.1.0",
     "husky": "4.2.5",
     "jest": "26.0.1",
     "lint-staged": "10.2.6",
-    "prettier": "1.19.1"
+    "prettier": "2.0.5"
   },
   "jest": {
     "preset": "./jest-preset.js"
