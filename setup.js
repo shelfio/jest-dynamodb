@@ -11,7 +11,7 @@ process.env.AWS_SECRET_ACCESS_KEY = 'secret-key';
 const DEFAULT_PORT = 8000;
 const DEFAULT_OPTIONS = ['-sharedDb'];
 
-module.exports = async function() {
+module.exports = async function () {
   const config = require(resolve(cwd(), 'jest-dynamodb-config.js'));
   const {
     tables: newTables,

@@ -2,21 +2,19 @@
   "name": "@shelf/jest-dynamodb",
   "version": "1.7.0",
   "description": "Run your tests using Jest & DynamoDB local",
-  "license": "MIT",
+  "keywords": [
+    "dynamodb",
+    "dynamodb local",
+    "jest",
+    "jest environment",
+    "jest preset"
+  ],
   "repository": "shelfio/jest-dynamodb",
+  "license": "MIT",
   "author": {
     "name": "Vlad Holubiev",
     "email": "vlad@shelf.io",
     "url": "shelf.io"
-  },
-  "engines": {
-    "node": ">=8"
-  },
-  "scripts": {
-    "coverage": "jest --coverage",
-    "lint": "eslint . --ext .js,.ts,.json --fix",
-    "lint:ci": "eslint . --ext .js,.ts,.json",
-    "test": "export ENVIRONMENT=local && jest . --runInBand"
   },
   "files": [
     "environment.js",
@@ -24,32 +22,11 @@
     "setup.js",
     "teardown.js"
   ],
-  "keywords": [
-    "jest",
-    "dynamodb",
-    "dynamodb local",
-    "jest preset",
-    "jest environment"
-  ],
-  "dependencies": {
-    "cwd": "0.10.0",
-    "debug": "4.1.1",
-    "dynamodb-local": "0.0.31"
-  },
-  "peerDependencies": {
-    "aws-sdk": "2.x.x"
-  },
-  "devDependencies": {
-    "@shelf/eslint-config": "0.16.0",
-    "aws-sdk": "2.631.0",
-    "eslint": "7.2.0",
-    "husky": "4.2.5",
-    "jest": "26.0.1",
-    "lint-staged": "10.2.9",
-    "prettier": "2.0.5"
-  },
-  "jest": {
-    "preset": "./jest-preset.js"
+  "scripts": {
+    "coverage": "jest --coverage",
+    "lint": "eslint . --ext .js,.ts,.json --fix",
+    "lint:ci": "eslint . --ext .js,.ts,.json",
+    "test": "export ENVIRONMENT=local && jest . --runInBand"
   },
   "husky": {
     "hooks": {
@@ -57,14 +34,39 @@
     }
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.{html,json,md,yml}": [
+    "*.{html,md,yml}": [
       "prettier --write",
       "git add"
+    ],
+    "*.{js,json}": [
+      "eslint --fix",
+      "git add"
     ]
+  },
+  "prettier": "@shelf/prettier-config",
+  "jest": {
+    "preset": "./jest-preset.js"
+  },
+  "dependencies": {
+    "cwd": "0.10.0",
+    "debug": "4.1.1",
+    "dynamodb-local": "0.0.31"
+  },
+  "devDependencies": {
+    "@shelf/eslint-config": "0.16.0",
+    "@shelf/prettier-config": "0.0.7",
+    "aws-sdk": "2.631.0",
+    "eslint": "7.2.0",
+    "husky": "4.2.5",
+    "jest": "26.0.1",
+    "lint-staged": "10.2.9",
+    "prettier": "2.0.5"
+  },
+  "peerDependencies": {
+    "aws-sdk": "2.x.x"
+  },
+  "engines": {
+    "node": ">=8"
   },
   "publishConfig": {
     "access": "public"
