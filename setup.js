@@ -41,7 +41,9 @@ module.exports = async function () {
       DynamoDbLocal.configureInstaller(installerConfig);
     }
 
-    global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options);
+    if(!global.__DYNAMODB__) {
+      global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options);
+    }
   }
 
   await createTables(dynamoDB, newTables);
