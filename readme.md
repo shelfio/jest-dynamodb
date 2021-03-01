@@ -98,7 +98,7 @@ module.exports = async () => {
 
   await serverless.init();
   const service = await serverless.variables.populateService();
-  const resources = service.resources.filter(r => Object.keys(r).includes("Resources"))[0]
+  const resources = service.resources.filter(r => Object.keys(r).includes('Resources'))[0];
 
   const tables = Object.keys(resources)
     .map(name => resources[name])
@@ -108,40 +108,37 @@ module.exports = async () => {
   return {
     tables,
     port: 8000
-  }
-}
+  };
+};
 ```
 
-Or read table definitions from a CloudFormation template (example handles a !Sub on TableName, i.e. TableName: !Sub "${env}-users" ):
+Or read table definitions from a CloudFormation template (example handles a !Sub on TableName, i.e. TableName: !Sub "\${env}-users" ):
 
 ```js
-
 const yaml = require('js-yaml');
-const fs   = require('fs');
+const fs = require('fs');
 const {CLOUDFORMATION_SCHEMA} = require('cloudformation-js-yaml-schema');
 
 module.exports = async () => {
-
-  const cf = yaml.safeLoad(
-    fs.readFileSync('../cf-templates/example-stack.yaml', 'utf8'),
-    {schema: CLOUDFORMATION_SCHEMA }
-  );
+  const cf = yaml.safeLoad(fs.readFileSync('../cf-templates/example-stack.yaml', 'utf8'), {
+    schema: CLOUDFORMATION_SCHEMA
+  });
   var tables = [];
-  Object.keys(cf.Resources).forEach((item) => {
+  Object.keys(cf.Resources).forEach(item => {
     tables.push(cf.Resources[item]);
   });
 
   tables = tables
     .filter(r => r.Type === 'AWS::DynamoDB::Table')
-    .map((r) => {
+    .map(r => {
       let table = r.Properties;
-      if (typeof x.TableName === "object") {
-        table.TableName = table.TableName.data.replace('${env}','test');
+      if (typeof x.TableName === 'object') {
+        table.TableName = table.TableName.data.replace('${env}', 'test');
       }
       delete table.TimeToLiveSpecification; //errors on dynamo-local
       return table;
     });
-  
+
   return {
     tables,
     port: 8000
@@ -204,6 +201,15 @@ Perhaps something is using your port specified in `jest-dynamodb-config.js`.
 ## See Also
 
 - [jest-mongodb](https://github.com/shelfio/jest-mongodb)
+
+## Publish
+
+```sh
+$ git checkout master
+$ yarn version
+$ yarn publish
+$ git push origin master --tags
+```
 
 ## License
 
