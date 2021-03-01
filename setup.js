@@ -41,7 +41,7 @@ module.exports = async function () {
       DynamoDbLocal.configureInstaller(installerConfig);
     }
 
-    if(!global.__DYNAMODB__) {
+    if (!global.__DYNAMODB__) {
       global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options);
     }
   }

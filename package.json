@@ -26,7 +26,7 @@
     "coverage": "jest --coverage",
     "lint": "eslint . --ext .js,.ts,.json --fix",
     "lint:ci": "eslint . --ext .js,.ts,.json",
-    "test": "export ENVIRONMENT=local && jest . --runInBand"
+    "test": "export ENVIRONMENT=local && jest ."
   },
   "husky": {
     "hooks": {
