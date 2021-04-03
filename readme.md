@@ -132,7 +132,7 @@ module.exports = async () => {
     .filter(r => r.Type === 'AWS::DynamoDB::Table')
     .map(r => {
       let table = r.Properties;
-      if (typeof x.TableName === 'object') {
+      if (typeof r.TableName === 'object') {
         table.TableName = table.TableName.data.replace('${env}', 'test');
       }
       delete table.TimeToLiveSpecification; //errors on dynamo-local
