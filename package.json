@@ -53,9 +53,10 @@
     "dynamodb-local": "0.0.31"
   },
   "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.26.0",
+    "@aws-sdk/lib-dynamodb": "^3.26.0",
     "@shelf/eslint-config": "0.19.0",
     "@shelf/prettier-config": "0.0.7",
-    "aws-sdk": "2.631.0",
     "eslint": "7.6.0",
     "husky": "4.2.5",
     "jest": "26.2.2",

@@ -1,6 +1,6 @@
 const {resolve} = require('path');
 const cwd = require('cwd');
-const DynamoDB = require('aws-sdk/clients/dynamodb');
+const {DynamoDB} = require('@aws-sdk/client-dynamodb');
 const DynamoDbLocal = require('dynamodb-local');
 const debug = require('debug')('jest-dynamodb');
 
@@ -22,8 +22,8 @@ module.exports = async function () {
   } = typeof config === 'function' ? await config() : config;
 
   const dynamoDB = new DynamoDB({
-    endpoint: `localhost:${port}`,
-    sslEnabled: false,
+    endpoint: `http://localhost:${port}`,
+    tls: false,
     region: 'local-env',
     ...clientConfig
   });
@@ -32,7 +32,7 @@ module.exports = async function () {
 
   try {
     const {TableNames: tableNames} = await Promise.race([
-      dynamoDB.listTables().promise(),
+      dynamoDB.listTables({}),
       new Promise(resolve => setTimeout(resolve, 1000))
     ]);
     await deleteTables(dynamoDB, tableNames); // cleanup leftovers
@@ -53,7 +53,7 @@ module.exports = async function () {
 };
 
 async function createTables(dynamoDB, tables) {
-  return Promise.all(tables.map(table => dynamoDB.createTable(table).promise()));
+  return Promise.all(tables.map(table => dynamoDB.createTable(table)));
 }
 
 async function deleteTables(dynamoDB, tableNames) {
