@@ -7,12 +7,13 @@ module.exports = async function (jestArgs) {
 
   if (global.__DYNAMODB__) {
     const watching = jestArgs.watch || jestArgs.watchAll;
+
     if (!watching) {
       await DynamoDbLocal.stopChild(global.__DYNAMODB__);
     }
   } else {
     const dynamoDB = global.__DYNAMODB_CLIENT__;
-    const {TableNames: tableNames} = await dynamoDB.listTables();
+    const {TableNames: tableNames} = await dynamoDB.listTables({});
     await Promise.all(tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName})));
   }
 };
