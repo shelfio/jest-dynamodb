@@ -53,9 +53,11 @@
     "dynamodb-local": "0.0.31"
   },
   "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.26.0",
+    "@aws-sdk/lib-dynamodb": "^3.26.0",
+    "@aws-sdk/util-dynamodb": "^3.26.0",
     "@shelf/eslint-config": "0.19.0",
     "@shelf/prettier-config": "0.0.7",
-    "aws-sdk": "2.631.0",
     "eslint": "7.6.0",
     "husky": "4.2.5",
     "jest": "26.2.2",
@@ -63,10 +65,12 @@
     "prettier": "2.0.5"
   },
   "peerDependencies": {
-    "aws-sdk": "2.x.x"
+    "@aws-sdk/client-dynamodb": "3.x.x",
+    "@aws-sdk/lib-dynamodb": "3.x.x",
+    "@aws-sdk/util-dynamodb": "3.x.x"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=12"
   },
   "publishConfig": {
     "access": "public"

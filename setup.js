@@ -1,8 +1,9 @@
 const {resolve} = require('path');
 const cwd = require('cwd');
-const DynamoDB = require('aws-sdk/clients/dynamodb');
+const {DynamoDB} = require('@aws-sdk/client-dynamodb');
 const DynamoDbLocal = require('dynamodb-local');
 const debug = require('debug')('jest-dynamodb');
+const waitForLocalhost = require('./wait-for-localhost');
 
 // aws-sdk requires access and secret key to be able to call DDB
 process.env.AWS_ACCESS_KEY_ID = 'access-key';
@@ -22,9 +23,13 @@ module.exports = async function () {
   } = typeof config === 'function' ? await config() : config;
 
   const dynamoDB = new DynamoDB({
-    endpoint: `localhost:${port}`,
-    sslEnabled: false,
+    endpoint: `http://localhost:${port}`,
+    tls: false,
     region: 'local-env',
+    credentials: {
+      accessKeyId: 'fakeMyKeyId',
+      secretAccessKey: 'fakeSecretAccessKey'
+    },
     ...clientConfig
   });
 
@@ -32,7 +37,7 @@ module.exports = async function () {
 
   try {
     const {TableNames: tableNames} = await Promise.race([
-      dynamoDB.listTables().promise(),
+      dynamoDB.listTables({}),
       new Promise(resolve => setTimeout(resolve, 1000))
     ]);
     await deleteTables(dynamoDB, tableNames); // cleanup leftovers
@@ -45,7 +50,11 @@ module.exports = async function () {
     }
 
     if (!global.__DYNAMODB__) {
+      debug('spinning up a local ddb instance');
+
       global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options);
+
+      await waitForLocalhost({port: DEFAULT_PORT, useGet: true, path: '/'});
     }
   }
 
@@ -53,7 +62,7 @@ module.exports = async function () {
 };
 
 async function createTables(dynamoDB, tables) {
-  return Promise.all(tables.map(table => dynamoDB.createTable(table).promise()));
+  return Promise.all(tables.map(table => dynamoDB.createTable(table)));
 }
 
 async function deleteTables(dynamoDB, tableNames) {

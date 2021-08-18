@@ -146,7 +146,7 @@ module.exports = async () => {
 };
 ```
 
-### 3. Configure DynamoDB client
+### 3.1 Configure DynamoDB client (from aws-sdk v2)
 
 ```js
 const {DocumentClient} = require('aws-sdk/clients/dynamodb');
@@ -158,6 +158,34 @@ const config = {
 };
 
 const ddb = new DocumentClient(config);
+```
+
+### 3.2 Configure DynamoDB client (from aws-sdk v3)
+
+```js
+const {DynamoDB} = require('@aws-sdk/client-dynamodb');
+const {DynamoDBDocument} = require('@aws-sdk/lib-dynamodb');
+
+const isTest = process.env.JEST_WORKER_ID;
+
+const ddb = DynamoDBDocument.from(
+  new DynamoDB({
+    ...(isTest && {
+      endpoint: 'localhost:8000',
+      sslEnabled: false,
+      region: 'local-env',
+      credentials: {
+        accessKeyId: 'fakeMyKeyId',
+        secretAccessKey: 'fakeSecretAccessKey'
+      }
+    })
+  }),
+  {
+    marshallOptions: {
+      convertEmptyValues: true
+    }
+  }
+);
 ```
 
 ### 4. PROFIT! Write tests
