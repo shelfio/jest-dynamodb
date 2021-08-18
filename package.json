@@ -65,7 +65,9 @@
     "prettier": "2.0.5"
   },
   "peerDependencies": {
-    "aws-sdk": "2.x.x"
+    "@aws-sdk/client-dynamodb": "3.x.x",
+    "@aws-sdk/lib-dynamodb": "3.x.x",
+    "@aws-sdk/util-dynamodb": "3.x.x"
   },
   "engines": {
     "node": ">=8"
