@@ -6,16 +6,12 @@
 
 const http = require('http');
 
-const waitForLocalhost = options => {
-  options = {...options};
-
+const waitForLocalhost = port => {
   return new Promise(resolve => {
     const retry = () => setTimeout(main, 200);
 
-    const method = options.useGet ? 'GET' : 'HEAD';
-
     const main = () => {
-      const request = http.request({method, port: options.port, path: options.path}, response => {
+      const request = http.request({method: 'GET', port, path: '/'}, response => {
         if (response.statusCode === 400) {
           return resolve();
         }
