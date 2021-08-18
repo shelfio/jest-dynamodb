@@ -70,7 +70,7 @@
     "@aws-sdk/util-dynamodb": "3.x.x"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=12"
   },
   "publishConfig": {
     "access": "public"
