@@ -25,6 +25,11 @@ module.exports = async function () {
   const dynamoDB = new DynamoDB({
     endpoint: `http://localhost:${port}`,
     tls: false,
+    region: 'local-env',
+    credentials: {
+      accessKeyId: 'fakeMyKeyId',
+      secretAccessKey: 'fakeSecretAccessKey'
+    },
     ...clientConfig
   });
 

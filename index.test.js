@@ -4,7 +4,12 @@ const {DynamoDBDocument} = require('@aws-sdk/lib-dynamodb');
 const ddb = DynamoDBDocument.from(
   new DynamoDB({
     endpoint: 'http://localhost:8000',
-    tls: false
+    tls: false,
+    region: 'local-env',
+    credentials: {
+      accessKeyId: 'fakeMyKeyId',
+      secretAccessKey: 'fakeSecretAccessKey'
+    }
   }),
   {
     marshallOptions: {
