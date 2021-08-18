@@ -3,6 +3,7 @@ const cwd = require('cwd');
 const {DynamoDB} = require('@aws-sdk/client-dynamodb');
 const DynamoDbLocal = require('dynamodb-local');
 const debug = require('debug')('jest-dynamodb');
+const waitForLocalhost = require('./wait-for-localhost');
 
 // aws-sdk requires access and secret key to be able to call DDB
 process.env.AWS_ACCESS_KEY_ID = 'access-key';
@@ -24,7 +25,6 @@ module.exports = async function () {
   const dynamoDB = new DynamoDB({
     endpoint: `http://localhost:${port}`,
     tls: false,
-    region: 'local-env',
     ...clientConfig
   });
 
@@ -45,7 +45,11 @@ module.exports = async function () {
     }
 
     if (!global.__DYNAMODB__) {
+      debug('spinning up a local ddb instance');
+
       global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options);
+
+      await waitForLocalhost({port: DEFAULT_PORT, useGet: true, path: '/'});
     }
   }
 
