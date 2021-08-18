@@ -55,6 +55,7 @@
   "devDependencies": {
     "@aws-sdk/client-dynamodb": "^3.26.0",
     "@aws-sdk/lib-dynamodb": "^3.26.0",
+    "@aws-sdk/util-dynamodb": "^3.26.0",
     "@shelf/eslint-config": "0.19.0",
     "@shelf/prettier-config": "0.0.7",
     "eslint": "7.6.0",
