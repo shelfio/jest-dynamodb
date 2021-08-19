@@ -20,7 +20,8 @@
     "environment.js",
     "jest-preset.js",
     "setup.js",
-    "teardown.js"
+    "teardown.js",
+    "wait-for-localhost.js"
   ],
   "scripts": {
     "coverage": "jest --coverage",
