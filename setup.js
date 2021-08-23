@@ -38,7 +38,7 @@ module.exports = async function () {
   try {
     const {TableNames: tableNames} = await Promise.race([
       dynamoDB.listTables({}),
-      waitForLocalhost(DEFAULT_PORT)
+      waitForLocalhost(port)
     ]);
     await deleteTables(dynamoDB, tableNames); // cleanup leftovers
   } catch (err) {
@@ -54,7 +54,7 @@ module.exports = async function () {
 
       global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options);
 
-      await waitForLocalhost(DEFAULT_PORT);
+      await waitForLocalhost(port);
     }
   }
 
