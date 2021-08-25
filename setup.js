@@ -13,7 +13,9 @@ const DEFAULT_PORT = 8000;
 const DEFAULT_OPTIONS = ['-sharedDb'];
 
 module.exports = async function () {
-  const config = require(resolve(cwd(), 'jest-dynamodb-config.js'));
+  const config = require(process.env.JEST_DYNAMODB_CONFIG ||
+    resolve(cwd(), 'jest-dynamodb-config.js'));
+  debug('config:', config);
   const {
     tables: newTables,
     clientConfig,
@@ -53,10 +55,12 @@ module.exports = async function () {
       debug('spinning up a local ddb instance');
 
       global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options);
+      debug(`dynamodb-local started on port ${port}`);
 
       await waitForLocalhost(port);
     }
   }
+  debug(`dynamodb-local is ready on port ${port}`);
 
   await createTables(dynamoDB, newTables);
 };
