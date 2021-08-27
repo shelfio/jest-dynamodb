@@ -203,6 +203,25 @@ it('should insert item into table', async () => {
 });
 ```
 
+## Monorepo Support
+By default the `jest-dynamodb-config.js` is read from `cwd` directory, but this might not be suitable for monorepos with nested [jest projects](https://jestjs.io/docs/configuration#projects-arraystring--projectconfig) with nested `jest.config.*` files nested in subdirectories.
+
+If your `jest-dynamodb-config.js` file is not located at `{cwd}/jest-dynamodb-config.js` or you are using nested `jest projects`, you can define the environment variable `JEST_DYNAMODB_CONFIG` with the absolute path of the respective `jest-dynamodb-config.js` file.
+
+### Example Using `JEST_DYNAMODB_CONFIG` in nested project
+```
+// src/nested/project/jest.config.js
+const path = require('path');
+
+// Define path of project level config - extension not required as file will be imporated via `require(process.env.JEST_DYNAMODB_CONFIG)`
+process.env.JEST_DYNAMODB_CONFIG = path.resolve(__dirname, './jest-dynamodb-config');
+
+module.exports = {
+  preset: '@shelf/jest-dynamodb'
+  displayName: 'nested-project',
+};
+```
+
 ## Troubleshooting
 
 <details>
