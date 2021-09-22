@@ -70,7 +70,5 @@ async function createTables(dynamoDB, tables) {
 }
 
 async function deleteTables(dynamoDB, tableNames) {
-  return Promise.all(
-    tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName}).promise())
-  );
+  return Promise.all(tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName})));
 }
