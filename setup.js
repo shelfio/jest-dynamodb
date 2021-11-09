@@ -5,10 +5,6 @@ const DynamoDbLocal = require('dynamodb-local');
 const debug = require('debug')('jest-dynamodb');
 const waitForLocalhost = require('./wait-for-localhost');
 
-// aws-sdk requires access and secret key to be able to call DDB
-process.env.AWS_ACCESS_KEY_ID = 'access-key';
-process.env.AWS_SECRET_ACCESS_KEY = 'secret-key';
-
 const DEFAULT_PORT = 8000;
 const DEFAULT_OPTIONS = ['-sharedDb'];
 
