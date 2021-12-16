@@ -8,13 +8,13 @@ const ddb = DynamoDBDocument.from(
     region: 'local-env',
     credentials: {
       accessKeyId: 'fakeMyKeyId',
-      secretAccessKey: 'fakeSecretAccessKey'
-    }
+      secretAccessKey: 'fakeSecretAccessKey',
+    },
   }),
   {
     marshallOptions: {
-      convertEmptyValues: true
-    }
+      convertEmptyValues: true,
+    },
   }
 );
 
@@ -25,6 +25,6 @@ it('should insert item into another table concurrently', async () => {
 
   expect(Item).toEqual({
     id: '1',
-    hello: 'world'
+    hello: 'world',
   });
 });

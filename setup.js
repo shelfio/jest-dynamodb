@@ -21,7 +21,7 @@ module.exports = async function () {
     clientConfig,
     installerConfig,
     port: port = DEFAULT_PORT,
-    options: options = DEFAULT_OPTIONS
+    options: options = DEFAULT_OPTIONS,
   } = typeof config === 'function' ? await config() : config;
 
   const dynamoDB = new DynamoDB({
@@ -30,9 +30,9 @@ module.exports = async function () {
     region: 'local-env',
     credentials: {
       accessKeyId: 'fakeMyKeyId',
-      secretAccessKey: 'fakeSecretAccessKey'
+      secretAccessKey: 'fakeSecretAccessKey',
     },
-    ...clientConfig
+    ...clientConfig,
   });
 
   global.__DYNAMODB_CLIENT__ = dynamoDB;
