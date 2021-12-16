@@ -29,11 +29,6 @@
     "lint:ci": "eslint . --ext .js,.ts,.json",
     "test": "export ENVIRONMENT=local && jest ."
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{html,md,yml}": [
       "prettier --write",
@@ -50,7 +45,7 @@
   },
   "dependencies": {
     "cwd": "0.10.0",
-    "debug": "4.1.1",
+    "debug": "4.3.3",
     "dynamodb-local": "0.0.31"
   },
   "devDependencies": {
@@ -59,11 +54,11 @@
     "@aws-sdk/util-dynamodb": "^3.26.0",
     "@shelf/eslint-config": "0.19.0",
     "@shelf/prettier-config": "0.0.7",
-    "eslint": "7.6.0",
-    "husky": "4.2.5",
+    "eslint": "8.4.1",
+    "husky": "7.0.4",
     "jest": "26.2.2",
     "lint-staged": "10.2.11",
-    "prettier": "2.0.5"
+    "prettier": "2.5.1"
   },
   "peerDependencies": {
     "@aws-sdk/client-dynamodb": "3.x.x",
