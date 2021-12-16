@@ -38,10 +38,13 @@ module.exports = async function () {
   global.__DYNAMODB_CLIENT__ = dynamoDB;
 
   try {
-    const {TableNames: tableNames} = await Promise.race([
-      dynamoDB.listTables({}),
-      waitForLocalhost(port)
-    ]);
+    const promises = [dynamoDB.listTables({})];
+
+    if (!global.__DYNAMODB__) {
+      promises.push(waitForLocalhost(port));
+    }
+
+    const {TableNames: tableNames} = await Promise.race(promises);
     await deleteTables(dynamoDB, tableNames); // cleanup leftovers
   } catch (err) {
     // eslint-disable-next-line no-console
@@ -70,7 +73,5 @@ async function createTables(dynamoDB, tables) {
 }
 
 async function deleteTables(dynamoDB, tableNames) {
-  return Promise.all(
-    tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName}).promise())
-  );
+  return Promise.all(tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName})));
 }
