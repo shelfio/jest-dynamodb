@@ -45,7 +45,7 @@ Port number. The default port number is `8000`.
 - Type: `string[]`
 - Required: `false`
 
-Addtional arguments for dynamodb-local. The default value is `['-sharedDb']`.
+Additional arguments for dynamodb-local. The default value is `['-sharedDb']`.
 
 - [dynamodb-local](https://github.com/rynop/dynamodb-local)
 - [DynamoDB Local Usage Notes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html)
@@ -217,7 +217,7 @@ If your `jest-dynamodb-config.js` file is not located at `{cwd}/jest-dynamodb-co
 // src/nested/project/jest.config.js
 const path = require('path');
 
-// Define path of project level config - extension not required as file will be imporated via `require(process.env.JEST_DYNAMODB_CONFIG)`
+// Define path of project level config - extension not required as file will be imported via `require(process.env.JEST_DYNAMODB_CONFIG)`
 process.env.JEST_DYNAMODB_CONFIG = path.resolve(__dirname, './jest-dynamodb-config');
 
 module.exports = {
