@@ -235,6 +235,13 @@ Perhaps something is using your port specified in `jest-dynamodb-config.js`.
 
 </details>
 
+<details>
+<summary>com.almworks.sqlite4java.Internal log WARNING: [sqlite] cannot open DB[1]:</summary>
+
+See https://www.josephso.dev/using-jest-dynamodb-in-apple-silicon-platform-workaround/#community-build
+
+</details>
+
 ## Alternatives
 
 - [jest-dynalite](https://github.com/freshollie/jest-dynalite) - a much lighter version which spins up an instance for each runner & doesn't depend on Java
