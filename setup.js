@@ -34,13 +34,11 @@ module.exports = async function () {
   global.__DYNAMODB_CLIENT__ = dynamoDB;
 
   try {
-    const promises = [dynamoDB.listTables({})];
-
     if (!global.__DYNAMODB__) {
-      promises.push(waitForLocalhost(port));
+      await waitForLocalhost(port);
     }
 
-    const {TableNames: tableNames} = await Promise.race(promises);
+    const {TableNames: tableNames} = await dynamoDB.listTables({});
     await deleteTables(dynamoDB, tableNames); // cleanup leftovers
   } catch (err) {
     // eslint-disable-next-line no-console
