@@ -15,7 +15,7 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: cimg/node:14.19-browsers
-      - image: dynamo
+      - image: circleci/dynamodb
 
     steps:
       - checkout
