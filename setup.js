@@ -40,7 +40,7 @@ module.exports = async function () {
       promises.push(waitForLocalhost(port));
     }
 
-    const {TableNames: tableNames} = await Promise.race(promises);
+    const [{TableNames: tableNames}] = await Promise.all(promises);
     await deleteTables(dynamoDB, tableNames); // cleanup leftovers
   } catch (err) {
     // eslint-disable-next-line no-console
