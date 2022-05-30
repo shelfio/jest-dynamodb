@@ -64,10 +64,10 @@ module.exports = async function () {
   await createTables(dynamoDB, newTables);
 };
 
-async function createTables(dynamoDB, tables) {
+function createTables(dynamoDB, tables) {
   return Promise.all(tables.map(table => dynamoDB.createTable(table)));
 }
 
-async function deleteTables(dynamoDB, tableNames) {
+function deleteTables(dynamoDB, tableNames) {
   return Promise.all(tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName})));
 }
