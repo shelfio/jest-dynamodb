@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-const NodeEnvironment = require('jest-environment-node');
+const {TestEnvironment} = require('jest-environment-node');
 const debug = require('debug')('jest-dynamodb');
 
-module.exports = class DynamoDBEnvironment extends NodeEnvironment {
+module.exports = class DynamoDBEnvironment extends TestEnvironment {
   constructor(config) {
     super(config);
   }
