@@ -44,14 +44,14 @@
     "preset": "./jest-preset.js"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "3.113.0",
+    "@aws-sdk/lib-dynamodb": "3.113.0",
+    "@aws-sdk/util-dynamodb": "3.113.0",
     "cwd": "0.10.0",
     "debug": "4.3.4",
     "dynamodb-local": "0.0.31"
   },
   "devDependencies": {
-    "@aws-sdk/client-dynamodb": "3.113.0",
-    "@aws-sdk/lib-dynamodb": "3.113.0",
-    "@aws-sdk/util-dynamodb": "3.113.0",
     "@shelf/eslint-config": "2.18.0",
     "@shelf/prettier-config": "1.0.0",
     "eslint": "8.18.0",
