@@ -10,13 +10,13 @@
 $ yarn add @shelf/jest-dynamodb --dev
 ```
 
-Make sure `aws-sdk` is installed as a peer dependency. And `java` runtime available for running [DynamoDBLocal.jar](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
+Make sure `java` runtime available for running [DynamoDBLocal.jar](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
 
 ### 1. Create `jest.config.js`
 
 ```js
 module.exports = {
-  preset: '@shelf/jest-dynamodb'
+  preset: '@shelf/jest-dynamodb',
 };
 ```
 
@@ -80,11 +80,11 @@ module.exports = {
       TableName: `files`,
       KeySchema: [{AttributeName: 'id', KeyType: 'HASH'}],
       AttributeDefinitions: [{AttributeName: 'id', AttributeType: 'S'}],
-      ProvisionedThroughput: {ReadCapacityUnits: 1, WriteCapacityUnits: 1}
-    }
+      ProvisionedThroughput: {ReadCapacityUnits: 1, WriteCapacityUnits: 1},
+    },
     // etc
   ],
-  port: 8000
+  port: 8000,
 };
 ```
 
@@ -107,7 +107,7 @@ module.exports = async () => {
 
   return {
     tables,
-    port: 8000
+    port: 8000,
   };
 };
 ```
@@ -121,7 +121,7 @@ const {CLOUDFORMATION_SCHEMA} = require('cloudformation-js-yaml-schema');
 
 module.exports = async () => {
   const cf = yaml.safeLoad(fs.readFileSync('../cf-templates/example-stack.yaml', 'utf8'), {
-    schema: CLOUDFORMATION_SCHEMA
+    schema: CLOUDFORMATION_SCHEMA,
   });
   var tables = [];
   Object.keys(cf.Resources).forEach(item => {
@@ -141,7 +141,7 @@ module.exports = async () => {
 
   return {
     tables,
-    port: 8000
+    port: 8000,
   };
 };
 ```
@@ -154,11 +154,15 @@ const {DocumentClient} = require('aws-sdk/clients/dynamodb');
 const isTest = process.env.JEST_WORKER_ID;
 const config = {
   convertEmptyValues: true,
-  ...(isTest && {endpoint: 'localhost:8000', sslEnabled: false, region: 'local-env',
+  ...(isTest && {
+    endpoint: 'localhost:8000',
+    sslEnabled: false,
+    region: 'local-env',
     credentials: {
       accessKeyId: 'fakeMyKeyId',
-      secretAccessKey: 'fakeSecretAccessKey'
-    }})
+      secretAccessKey: 'fakeSecretAccessKey',
+    },
+  }),
 };
 
 const ddb = new DocumentClient(config);
@@ -180,14 +184,14 @@ const ddb = DynamoDBDocument.from(
       region: 'local-env',
       credentials: {
         accessKeyId: 'fakeMyKeyId',
-        secretAccessKey: 'fakeSecretAccessKey'
-      }
-    })
+        secretAccessKey: 'fakeSecretAccessKey',
+      },
+    }),
   }),
   {
     marshallOptions: {
-      convertEmptyValues: true
-    }
+      convertEmptyValues: true,
+    },
   }
 );
 ```
@@ -202,17 +206,19 @@ it('should insert item into table', async () => {
 
   expect(Item).toEqual({
     id: '1',
-    hello: 'world'
+    hello: 'world',
   });
 });
 ```
 
 ## Monorepo Support
+
 By default the `jest-dynamodb-config.js` is read from `cwd` directory, but this might not be suitable for monorepos with nested [jest projects](https://jestjs.io/docs/configuration#projects-arraystring--projectconfig) with nested `jest.config.*` files nested in subdirectories.
 
 If your `jest-dynamodb-config.js` file is not located at `{cwd}/jest-dynamodb-config.js` or you are using nested `jest projects`, you can define the environment variable `JEST_DYNAMODB_CONFIG` with the absolute path of the respective `jest-dynamodb-config.js` file.
 
 ### Example Using `JEST_DYNAMODB_CONFIG` in nested project
+
 ```
 // src/nested/project/jest.config.js
 const path = require('path');
