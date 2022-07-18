@@ -10,7 +10,7 @@
 $ yarn add @shelf/jest-dynamodb --dev
 ```
 
-Make sure 3 `@aws-sdk` packages is installed as a peer dependency. And `java` runtime available for running [DynamoDBLocal.jar](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
+Make sure 3 `@aws-sdk` packages are installed as a peer dependency. And `java` runtime available for running [DynamoDBLocal.jar](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
 
 ### 1. Create `jest.config.js`
 
