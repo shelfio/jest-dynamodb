@@ -40,6 +40,13 @@ Array of createTable params.
 
 Port number. The default port number is `8000`.
 
+##### hostname
+
+- Type: `string`
+- Required: `false`
+
+Port number. The default hostname number is `localhost`.
+
 ##### options
 
 - Type: `string[]`
