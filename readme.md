@@ -79,9 +79,12 @@ The default value is defined at https://github.com/rynop/dynamodb-local/blob/2e6
 #### 2.2 Examples
 
 You can set up tables as an object:
-
+ > Whole list of config properties can be found [here](https://github.com/shelfio/jest-dynamodb/blob/6c64dbd4ee5a68230469ea14cbfb814470521197/src/types.ts#L80-L87)
 ```js
-module.exports = {
+/**
+ * @type {import('@shelf/jest-dynamodb/lib').Config}')}
+ */
+const config = {
   tables: [
     {
       TableName: `files`,
@@ -93,6 +96,7 @@ module.exports = {
   ],
   port: 8000,
 };
+module.exports = config;
 ```
 
 Or as an async function (particularly useful when resolving DynamoDB setup dynamically from `serverless.yml`):
