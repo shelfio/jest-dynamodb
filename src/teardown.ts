@@ -17,7 +17,7 @@ module.exports = async function (jestArgs: JestArgs) {
     const dynamoDB = global.__DYNAMODB_CLIENT__;
     const {TableNames: tableNames} = await dynamoDB.listTables({});
 
-    if (tableNames && tableNames.length) {
+    if (tableNames?.length) {
       await Promise.all(tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName})));
     }
   }
