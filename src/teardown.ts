@@ -3,7 +3,7 @@ import type {JestArgs} from './types';
 
 const debug = require('debug')('jest-dynamodb');
 
-module.exports = async function (jestArgs: JestArgs) {
+export default async function (jestArgs: JestArgs) {
   // eslint-disable-next-line no-console
   debug('Teardown DynamoDB');
 
