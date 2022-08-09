@@ -1,4 +1,7 @@
-module.exports = {
+/**
+ * @type {import('./lib/types').Config}
+ */
+const config = {
   tables: [
     {
       TableName: `files`,
@@ -16,3 +19,5 @@ module.exports = {
   port: 8000,
   options: ['-sharedDb'],
 };
+
+module.exports = config;

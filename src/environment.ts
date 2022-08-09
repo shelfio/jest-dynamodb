@@ -1,10 +1,13 @@
 /* eslint-disable no-console */
-const {TestEnvironment} = require('jest-environment-node');
+import type {EnvironmentContext} from '@jest/environment';
+import type {JestEnvironmentConfig} from '@jest/environment';
+import {TestEnvironment} from 'jest-environment-node';
+
 const debug = require('debug')('jest-dynamodb');
 
 module.exports = class DynamoDBEnvironment extends TestEnvironment {
-  constructor(config) {
-    super(config);
+  constructor(config: JestEnvironmentConfig, context: EnvironmentContext) {
+    super(config, context);
   }
 
   async setup() {
@@ -19,7 +22,9 @@ module.exports = class DynamoDBEnvironment extends TestEnvironment {
     await super.teardown();
   }
 
+  // @ts-ignore
   runScript(script) {
+    // @ts-ignore
     return super.runScript(script);
   }
 };

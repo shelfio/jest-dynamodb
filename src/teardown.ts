@@ -1,7 +1,9 @@
-const DynamoDbLocal = require('dynamodb-local');
+import DynamoDbLocal from 'dynamodb-local';
+import type {JestArgs} from './types';
+
 const debug = require('debug')('jest-dynamodb');
 
-module.exports = async function (jestArgs) {
+export default async function (jestArgs: JestArgs) {
   // eslint-disable-next-line no-console
   debug('Teardown DynamoDB');
 
@@ -14,6 +16,9 @@ module.exports = async function (jestArgs) {
   } else {
     const dynamoDB = global.__DYNAMODB_CLIENT__;
     const {TableNames: tableNames} = await dynamoDB.listTables({});
-    await Promise.all(tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName})));
+
+    if (tableNames?.length) {
+      await Promise.all(tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName})));
+    }
   }
 };
