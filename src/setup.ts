@@ -1,24 +1,26 @@
-const {resolve} = require('path');
-const cwd = require('cwd');
-const {DynamoDB} = require('@aws-sdk/client-dynamodb');
-const DynamoDbLocal = require('dynamodb-local');
+import type {ListTablesCommandOutput} from '@aws-sdk/client-dynamodb/dist-types/commands/ListTablesCommand';
+import type {argValues} from 'dynamodb-local';
+import DynamoDbLocal from 'dynamodb-local';
+import {resolve} from 'path';
+import cwd from 'cwd';
+import {DynamoDB} from '@aws-sdk/client-dynamodb';
+import type {CreateTableCommandInput} from '@aws-sdk/client-dynamodb';
+import type {Config} from './types';
+import waitForLocalhost from './utils/wait-for-localhost';
+
 const debug = require('debug')('jest-dynamodb');
-const waitForLocalhost = require('./wait-for-localhost');
 
 const DEFAULT_PORT = 8000;
-const DEFAULT_OPTIONS = ['-sharedDb'];
+const DEFAULT_OPTIONS: argValues[] = ['-sharedDb'];
 
 module.exports = async function () {
-  const config = require(process.env.JEST_DYNAMODB_CONFIG ||
-    resolve(cwd(), 'jest-dynamodb-config.js'));
-  debug('config:', config);
   const {
     tables: newTables,
     clientConfig,
     installerConfig,
     port: port = DEFAULT_PORT,
     options: options = DEFAULT_OPTIONS,
-  } = typeof config === 'function' ? await config() : config;
+  } = await getConfig();
 
   const dynamoDB = new DynamoDB({
     endpoint: `http://localhost:${port}`,
@@ -34,14 +36,20 @@ module.exports = async function () {
   global.__DYNAMODB_CLIENT__ = dynamoDB;
 
   try {
-    const promises = [dynamoDB.listTables({})];
+    const promises: (Promise<ListTablesCommandOutput> | Promise<void>)[] = [
+      dynamoDB.listTables({}),
+    ];
 
     if (!global.__DYNAMODB__) {
       promises.push(waitForLocalhost(port));
     }
 
-    const [{TableNames: tableNames}] = await Promise.all(promises);
-    await deleteTables(dynamoDB, tableNames); // cleanup leftovers
+    const [TablesList] = await Promise.all(promises);
+    const tableNames = TablesList?.TableNames;
+
+    if (tableNames) {
+      await deleteTables(dynamoDB, tableNames);
+    }
   } catch (err) {
     // eslint-disable-next-line no-console
     debug(`fallback to launch DB due to ${err}`);
@@ -64,10 +72,18 @@ module.exports = async function () {
   await createTables(dynamoDB, newTables);
 };
 
-function createTables(dynamoDB, tables) {
+function createTables(dynamoDB: DynamoDB, tables: CreateTableCommandInput[]) {
   return Promise.all(tables.map(table => dynamoDB.createTable(table)));
 }
 
-function deleteTables(dynamoDB, tableNames) {
+function deleteTables(dynamoDB: DynamoDB, tableNames: string[]) {
   return Promise.all(tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName})));
+}
+
+async function getConfig(): Promise<Config> {
+  const path = process.env.JEST_DYNAMODB_CONFIG || resolve(cwd(), 'jest-dynamodb-config.js');
+  const config = require(path);
+  debug('config:', config);
+
+  return typeof config === 'function' ? await config() : config;
 }

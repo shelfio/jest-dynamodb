@@ -17,23 +17,29 @@
     "url": "shelf.io"
   },
   "files": [
-    "environment.js",
+    "src/environment.js",
     "jest-preset.js",
-    "setup.js",
-    "teardown.js",
-    "wait-for-localhost.js"
+    "src/setup.js",
+    "src/teardown.js",
+    "src/index.d.ts",
+    "src/utils/wait-for-localhost.js"
   ],
   "scripts": {
+    "build": "rm -rf lib/ && yarn build:types && babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts'",
+    "build:types": "tsc --emitDeclarationOnly --declaration --isolatedModules false --declarationDir lib",
     "coverage": "jest --coverage",
     "lint": "eslint . --ext .js,.ts,.json --fix",
     "lint:ci": "eslint . --ext .js,.ts,.json",
-    "test": "export ENVIRONMENT=local && jest ."
+    "prepack": "yarn build",
+    "test": "export ENVIRONMENT=local && jest tests",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch"
   },
   "lint-staged": {
     "*.{html,md,yml}": [
       "prettier --write"
     ],
-    "*.{js,json}": [
+    "*.{ts,js,json}": [
       "eslint --fix"
     ]
   },
@@ -53,9 +59,16 @@
     "dynamodb-local": "0.0.31"
   },
   "devDependencies": {
+    "@babel/cli": "7.18.9",
+    "@babel/core": "7.18.9",
     "@shelf/babel-config": "1.0.2",
     "@shelf/eslint-config": "2.18.0",
     "@shelf/prettier-config": "1.0.0",
+    "@shelf/tsconfig": "0.0.8",
+    "@types/aws-sdk": "2.7.0",
+    "@types/cwd": "^0.10.0",
+    "@types/jest": "28.1.6",
+    "@types/node": "16",
     "eslint": "8.20.0",
     "husky": "8.0.1",
     "jest": "28.1.3",
