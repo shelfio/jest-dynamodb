@@ -17,11 +17,12 @@
     "url": "shelf.io"
   },
   "files": [
-    "lib/environment.js",
     "jest-preset.js",
+    "lib/environment.js",
+    "lib/index.d.ts",
     "lib/setup.js",
     "lib/teardown.js",
-    "lib/index.d.ts",
+    "lib/types.js",
     "lib/utils/wait-for-localhost.js"
   ],
   "scripts": {
