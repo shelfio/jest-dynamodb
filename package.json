@@ -53,7 +53,7 @@
     "dynamodb-local": "0.0.31"
   },
   "devDependencies": {
-    "@shelf/babel-config": "1.0.2",
+    "@shelf/babel-config": "1.2.0",
     "@shelf/eslint-config": "2.18.0",
     "@shelf/prettier-config": "1.0.0",
     "eslint": "8.20.0",
