@@ -18,7 +18,7 @@
   },
   "files": [
     "jest-preset.js",
-    "lib"
+    "lib/"
   ],
   "scripts": {
     "build": "rm -rf lib/ && yarn build:types && babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts'",
