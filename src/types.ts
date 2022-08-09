@@ -80,7 +80,8 @@ export type JestArgs = {
 export type Config = {
   tables: CreateTableCommandInput[];
   clientConfig?: DynamoDBClientConfig;
-  installerConfig: InstallerConfig;
-  port: number;
-  options: argValues[];
+  installerConfig?: InstallerConfig;
+  port?: number;
+  hostname?: string;
+  options?: argValues[];
 };

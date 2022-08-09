@@ -11,6 +11,7 @@ import waitForLocalhost from './utils/wait-for-localhost';
 const debug = require('debug')('jest-dynamodb');
 
 const DEFAULT_PORT = 8000;
+const DEFAULT_HOST = 'localhost';
 const DEFAULT_OPTIONS: argValues[] = ['-sharedDb'];
 
 module.exports = async function () {
@@ -19,11 +20,12 @@ module.exports = async function () {
     clientConfig,
     installerConfig,
     port: port = DEFAULT_PORT,
+    hostname: hostname = DEFAULT_HOST,
     options: options = DEFAULT_OPTIONS,
   } = await getConfig();
 
   const dynamoDB = new DynamoDB({
-    endpoint: `http://localhost:${port}`,
+    endpoint: `http://${hostname}:${port}`,
     tls: false,
     region: 'local-env',
     credentials: {
@@ -41,7 +43,7 @@ module.exports = async function () {
     ];
 
     if (!global.__DYNAMODB__) {
-      promises.push(waitForLocalhost(port));
+      promises.push(waitForLocalhost(port, hostname));
     }
 
     const [TablesList] = await Promise.all(promises);
@@ -64,7 +66,7 @@ module.exports = async function () {
       global.__DYNAMODB__ = await DynamoDbLocal.launch(port, null, options);
       debug(`dynamodb-local started on port ${port}`);
 
-      await waitForLocalhost(port);
+      await waitForLocalhost(port, hostname);
     }
   }
   debug(`dynamodb-local is ready on port ${port}`);
