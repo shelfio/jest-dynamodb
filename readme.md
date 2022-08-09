@@ -45,7 +45,7 @@ Port number. The default port number is `8000`.
 - Type: `string`
 - Required: `false`
 
-Port number. The default hostname number is `localhost`.
+Hostname. The default hostname is `localhost`.
 
 ##### options
 
