@@ -131,7 +131,7 @@ const fs = require('fs');
 const {CLOUDFORMATION_SCHEMA} = require('cloudformation-js-yaml-schema');
 
 module.exports = async () => {
-  const cf = yaml.safeLoad(fs.readFileSync('../cf-templates/example-stack.yaml', 'utf8'), {
+  const cf = yaml.load(fs.readFileSync('../cf-templates/example-stack.yaml', 'utf8'), {
     schema: CLOUDFORMATION_SCHEMA,
   });
   var tables = [];
