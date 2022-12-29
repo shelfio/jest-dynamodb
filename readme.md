@@ -128,7 +128,7 @@ Or read table definitions from a CloudFormation template (example handles a !Sub
 ```js
 const yaml = require('js-yaml');
 const fs = require('fs');
-const { CLOUDFORMATION_SCHEMA } = require('cloudformation-js-yaml-schema');
+const {CLOUDFORMATION_SCHEMA} = require('cloudformation-js-yaml-schema');
 
 module.exports = async () => {
   const cf = yaml.load(fs.readFileSync('../cf-templates/example-stack.yaml', 'utf8'), {
