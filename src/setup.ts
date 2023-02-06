@@ -1,7 +1,7 @@
-import type {ListTablesCommandOutput} from '@aws-sdk/client-dynamodb/dist-types/commands/ListTablesCommand';
-import type {argValues} from 'dynamodb-local';
 import DynamoDbLocal from 'dynamodb-local';
 import {DynamoDB} from '@aws-sdk/client-dynamodb';
+import type {ListTablesCommandOutput} from '@aws-sdk/client-dynamodb/dist-types/commands/ListTablesCommand';
+import type {argValues} from 'dynamodb-local';
 import type {CreateTableCommandInput} from '@aws-sdk/client-dynamodb';
 import getConfig from './utils/get-config';
 import deleteTables from './utils/delete-tables';

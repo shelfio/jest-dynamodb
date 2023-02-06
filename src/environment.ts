@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
+import {TestEnvironment} from 'jest-environment-node';
 import type {EnvironmentContext} from '@jest/environment';
 import type {JestEnvironmentConfig} from '@jest/environment';
-import {TestEnvironment} from 'jest-environment-node';
 
 const debug = require('debug')('jest-dynamodb');
 
