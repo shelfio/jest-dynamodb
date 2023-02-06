@@ -1,12 +1,12 @@
 import type {ListTablesCommandOutput} from '@aws-sdk/client-dynamodb/dist-types/commands/ListTablesCommand';
 import type {argValues} from 'dynamodb-local';
 import DynamoDbLocal from 'dynamodb-local';
-import {resolve} from 'path';
-import cwd from 'cwd';
 import {DynamoDB} from '@aws-sdk/client-dynamodb';
 import type {CreateTableCommandInput} from '@aws-sdk/client-dynamodb';
-import type {Config} from './types';
+import getConfig from './utils/get-config';
+import deleteTables from './utils/delete-tables';
 import waitForLocalhost from './utils/wait-for-localhost';
+import getRelevantTables from './utils/get-relevant-tables';
 
 const debug = require('debug')('jest-dynamodb');
 
@@ -22,7 +22,7 @@ export default async function () {
     port: port = DEFAULT_PORT,
     hostname: hostname = DEFAULT_HOST,
     options: options = DEFAULT_OPTIONS,
-  } = await getConfig();
+  } = await getConfig(debug);
 
   const dynamoDB = new DynamoDB({
     endpoint: `http://${hostname}:${port}`,
@@ -50,7 +50,7 @@ export default async function () {
     const tableNames = TablesList?.TableNames;
 
     if (tableNames) {
-      await deleteTables(dynamoDB, tableNames);
+      await deleteTables(dynamoDB, getRelevantTables(tableNames, newTables));
     }
   } catch (err) {
     // eslint-disable-next-line no-console
@@ -76,16 +76,4 @@ export default async function () {
 
 function createTables(dynamoDB: DynamoDB, tables: CreateTableCommandInput[]) {
   return Promise.all(tables.map(table => dynamoDB.createTable(table)));
-}
-
-function deleteTables(dynamoDB: DynamoDB, tableNames: string[]) {
-  return Promise.all(tableNames.map(tableName => dynamoDB.deleteTable({TableName: tableName})));
-}
-
-async function getConfig(): Promise<Config> {
-  const path = process.env.JEST_DYNAMODB_CONFIG || resolve(cwd(), 'jest-dynamodb-config.js');
-  const config = require(path);
-  debug('config:', config);
-
-  return typeof config === 'function' ? await config() : config;
 }
