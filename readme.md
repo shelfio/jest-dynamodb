@@ -190,8 +190,7 @@ const isTest = process.env.JEST_WORKER_ID;
 const ddb = DynamoDBDocument.from(
   new DynamoDB({
     ...(isTest && {
-      endpoint: 'localhost:8000',
-      sslEnabled: false,
+      endpoint: 'http://localhost:8000',
       region: 'local-env',
       credentials: {
         accessKeyId: 'fakeMyKeyId',
