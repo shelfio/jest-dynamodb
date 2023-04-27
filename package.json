@@ -58,7 +58,7 @@
     "@babel/cli": "7.21.5",
     "@babel/core": "7.22.1",
     "@shelf/babel-config": "1.2.0",
-    "@shelf/eslint-config": "2.27.1",
+    "@shelf/eslint-config": "2.29.1",
     "@shelf/prettier-config": "1.0.0",
     "@shelf/tsconfig": "0.0.9",
     "@types/aws-sdk": "2.7.0",
