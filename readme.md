@@ -272,6 +272,7 @@ See https://www.josephso.dev/using-jest-dynamodb-in-apple-silicon-platform-worka
 ## Used by
 
 - [dynamodb-parallel-scan](https://github.com/shelfio/dynamodb-parallel-scan)
+- [@nasa-gcn/dynamodb-autoincrement](https://github.com/nasa-gcn/dynamodb-autoincrement)
 
 ## See Also
 
