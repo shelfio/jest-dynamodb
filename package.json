@@ -47,12 +47,12 @@
     "preset": "./jest-preset.js"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "3.379.1",
-    "@aws-sdk/lib-dynamodb": "3.379.1",
-    "@aws-sdk/util-dynamodb": "3.379.1",
+    "@aws-sdk/client-dynamodb": "3.485.0",
+    "@aws-sdk/lib-dynamodb": "3.485.0",
+    "@aws-sdk/util-dynamodb": "3.485.0",
     "cwd": "0.10.0",
     "debug": "4.3.4",
-    "dynamodb-local": "0.0.32"
+    "dynamodb-local": "0.0.34"
   },
   "devDependencies": {
     "@babel/cli": "7.23.4",
@@ -62,7 +62,7 @@
     "@shelf/prettier-config": "1.0.0",
     "@shelf/tsconfig": "0.0.11",
     "@types/aws-sdk": "2.7.0",
-    "@types/cwd": "^0.10.0",
+    "@types/cwd": "^0.10.2",
     "@types/jest": "29.5.11",
     "@types/node": "16",
     "eslint": "8.56.0",
