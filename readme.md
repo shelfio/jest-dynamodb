@@ -157,6 +157,57 @@ module.exports = async () => {
 };
 ```
 
+Or read table definitions from a CloudFormation template gotten directly from an [AWS CDK Stack](https://docs.aws.amazon.com/cdk/v2/guide/home.html):
+
+```js
+const {Template} = require("aws-cdk-lib/assertions");
+const {stackWithTables} = require("path/to/stack");
+
+const dynamodb = require("aws-cdk-lib/aws-dynamodb");
+const os = require("os");
+const path = require("path");
+
+/**
+ * @type {import('@shelf/jest-dynamodb/lib').Config}')}
+ */
+
+async function jestSetupForDynamoLocal() {
+
+  const template = Template.fromStack(stackWithTables);
+  const dynamoDBTablesTemplate = template.findResources(
+    dynamodb.CfnGlobalTable.CFN_RESOURCE_TYPE_NAME,
+  );
+
+  const tables = Object.values(dynamoDBTablesTemplate).map(Resource => {
+    const {Properties = {}} = Resource;
+
+    /**
+     * errors on dynamo-local
+     */
+    if ("TimeToLiveSpecification" in Properties) {
+      delete Properties.TimeToLiveSpecification;
+    }
+
+    if ("StreamSpecification" in Properties) {
+      Properties.StreamSpecification.StreamEnabled = false;
+      delete Properties.StreamSpecification.StreamViewType;
+    }
+
+    return Properties;
+  });
+
+  return {
+    tables,
+    port: 8000,
+    installerConfig: {
+      installPath:
+        process.env.DYNAMO_DB_LOCAL_INSTALL_PATH ||
+          path.join(os.homedir() , "dynamodb_local", "dynamodb_local_latest") ,
+    },
+  };
+}
+```
+
 ### 3.1 Configure DynamoDB client (from aws-sdk v2)
 
 ```js
