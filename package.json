@@ -63,7 +63,7 @@
     "@shelf/tsconfig": "0.1.0",
     "@types/aws-sdk": "2.7.0",
     "@types/cwd": "^0.10.2",
-    "@types/jest": "29.5.12",
+    "@types/jest": "29.5.13",
     "@types/node": "16",
     "eslint": "8.57.0",
     "husky": "8.0.3",
