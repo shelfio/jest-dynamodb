@@ -30,3 +30,8 @@ workflows:
     jobs:
       - test_with_db
       - test_without_db
+parameters:
+  node_version:
+    default: 22.13.0
+orbs:
+  node: circleci/node@7.0.0
