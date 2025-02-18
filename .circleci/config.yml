@@ -1,11 +1,15 @@
 version: 2.1
 
+parameters:
+  node_docker_image:
+    type: string
+    default: cimg/node:22.14.0-browsers
+
 jobs:
   test_without_db:
     working_directory: ~/repo
     docker:
-      - image: cimg/node:20.18.1-browsers
-
+      - image: << parameters.node_docker_image >>
     steps:
       - checkout
       - run: yarn
@@ -15,9 +19,8 @@ jobs:
   test_with_db:
     working_directory: ~/repo
     docker:
-      - image: cimg/node:20.18.1-browsers
+      - image: << parameters.node_docker_image >>
       - image: circleci/dynamodb
-
     steps:
       - checkout
       - run: yarn

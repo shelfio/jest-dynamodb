@@ -1,6 +1,6 @@
 {
   "name": "@shelf/jest-dynamodb",
-  "version": "3.4.4",
+  "version": "4.0.0",
   "description": "Run your tests using Jest & DynamoDB local",
   "keywords": [
     "dynamodb",
@@ -64,7 +64,7 @@
     "@types/aws-sdk": "2.7.4",
     "@types/cwd": "^0.10.2",
     "@types/jest": "29.5.14",
-    "@types/node": "20",
+    "@types/node": "22",
     "eslint": "9.19.0",
     "husky": "8.0.3",
     "jest": "29.7.0",
@@ -73,7 +73,7 @@
     "typescript": "5.7.3"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "publishConfig": {
     "access": "public"
