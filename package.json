@@ -1,6 +1,6 @@
 {
   "name": "@shelf/jest-dynamodb",
-  "version": "3.4.4",
+  "version": "4.0.0",
   "description": "Run your tests using Jest & DynamoDB local",
   "keywords": [
     "dynamodb",
