@@ -4,7 +4,7 @@ jobs:
   test_without_db:
     working_directory: ~/repo
     docker:
-      - image: cimg/node:20.18.1-browsers
+      - image: cimg/node:22.14.0-browsers
 
     steps:
       - checkout
@@ -15,7 +15,7 @@ jobs:
   test_with_db:
     working_directory: ~/repo
     docker:
-      - image: cimg/node:20.18.1-browsers
+      - image: cimg/node:22.14.0-browsers
       - image: circleci/dynamodb
 
     steps:
@@ -30,8 +30,3 @@ workflows:
     jobs:
       - test_with_db
       - test_without_db
-parameters:
-  node_version:
-    default: 22.13.0
-orbs:
-  node: circleci/node@7.0.0
