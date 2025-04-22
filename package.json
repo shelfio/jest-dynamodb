@@ -65,7 +65,7 @@
     "@types/cwd": "^0.10.2",
     "@types/jest": "29.5.14",
     "@types/node": "22",
-    "eslint": "9.25.0",
+    "eslint": "9.25.1",
     "husky": "8.0.3",
     "jest": "29.7.0",
     "lint-staged": "13.3.0",
