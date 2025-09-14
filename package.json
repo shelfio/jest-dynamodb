@@ -51,7 +51,7 @@
     "@aws-sdk/lib-dynamodb": "3.624.0",
     "@aws-sdk/util-dynamodb": "3.624.0",
     "cwd": "0.10.0",
-    "debug": "4.3.4",
+    "debug": "4.4.3",
     "dynamodb-local": "0.0.34"
   },
   "devDependencies": {
