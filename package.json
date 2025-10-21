@@ -69,5 +69,13 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "lint-staged": {
+    "*.{html,md,yml}": [
+      "prettier --write"
+    ],
+    "*.{ts,js,json}": [
+      "eslint --fix"
+    ]
   }
 }
