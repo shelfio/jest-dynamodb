@@ -68,7 +68,7 @@
     "eslint": "9.25.1",
     "husky": "8.0.3",
     "jest": "29.7.0",
-    "lint-staged": "13.3.0",
+    "lint-staged": "16.2.6",
     "prettier": "3.5.3",
     "typescript": "5.8.3"
   },
