@@ -52,7 +52,7 @@
     "@aws-sdk/util-dynamodb": "3.624.0",
     "cwd": "0.10.0",
     "debug": "4.3.4",
-    "dynamodb-local": "0.0.34"
+    "dynamodb-local": "0.0.36"
   },
   "devDependencies": {
     "@babel/cli": "7.27.0",
