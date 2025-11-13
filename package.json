@@ -47,8 +47,8 @@
     "dynamodb-local": "0.0.34"
   },
   "devDependencies": {
-    "@babel/cli": "7.27.0",
-    "@babel/core": "7.26.10",
+    "@babel/cli": "7.28.3",
+    "@babel/core": "7.28.5",
     "@shelf/babel-config": "1.2.0",
     "@shelf/eslint-config": "4.2.1",
     "@shelf/prettier-config": "1.0.0",
