@@ -39,9 +39,9 @@
     "preset": "./jest-preset.js"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "3.624.0",
-    "@aws-sdk/lib-dynamodb": "3.624.0",
-    "@aws-sdk/util-dynamodb": "3.624.0",
+    "@aws-sdk/client-dynamodb": "3.932.0",
+    "@aws-sdk/lib-dynamodb": "3.932.0",
+    "@aws-sdk/util-dynamodb": "3.932.0",
     "cwd": "0.10.0",
     "debug": "4.3.4",
     "dynamodb-local": "0.0.34"
