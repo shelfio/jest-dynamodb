@@ -1,6 +1,6 @@
 {
   "name": "@shelf/jest-dynamodb",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Run your tests using Jest & DynamoDB local",
   "keywords": [
     "dynamodb",
@@ -39,9 +39,9 @@
     "preset": "./jest-preset.js"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "3.978.0",
-    "@aws-sdk/lib-dynamodb": "3.978.0",
-    "@aws-sdk/util-dynamodb": "3.978.0",
+    "@aws-sdk/client-dynamodb": "3.980.0",
+    "@aws-sdk/lib-dynamodb": "3.980.0",
+    "@aws-sdk/util-dynamodb": "3.980.0",
     "@jest/environment": "30.2.0",
     "cwd": "0.10.0",
     "debug": "4.4.3",
