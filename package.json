@@ -81,7 +81,7 @@
   },
   "pnpm": {
     "overrides": {
-      "dynamodb-local>tar": "7.5.7"
+      "dynamodb-local>tar": "7.5.9"
     }
   }
 }
