@@ -17,4 +17,9 @@ export default [
       'renovate.json',
     ],
   },
+  {
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
 ];
