@@ -21,12 +21,12 @@
     "lib/"
   ],
   "scripts": {
-    "build": "rm -rf lib/ && yarn build:types && babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts'",
+    "build": "rm -rf lib/ && pnpm build:types && babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts'",
     "build:types": "tsc --emitDeclarationOnly --declaration --isolatedModules false --declarationDir lib",
     "coverage": "jest --coverage",
-    "lint": "yarn lint:ci --fix",
+    "lint": "pnpm lint:ci --fix",
     "lint:ci": "eslint . --quiet",
-    "prepack": "yarn build",
+    "prepack": "pnpm build",
     "test": "export ENVIRONMENT=local && jest tests",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch"
