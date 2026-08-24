@@ -21,8 +21,7 @@
     "lib/"
   ],
   "scripts": {
-    "build": "rm -rf lib/ && pnpm build:types && babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts'",
-    "build:types": "tsc --emitDeclarationOnly --declaration --isolatedModules false --declarationDir lib",
+    "build": "rm -rf lib/ && tsc --project tsconfig.build.json",
     "coverage": "jest --coverage",
     "lint": "pnpm lint:ci --fix",
     "lint:ci": "eslint . --quiet",
@@ -31,12 +30,22 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch"
   },
-  "babel": {
-    "extends": "@shelf/babel-config/backend"
-  },
   "prettier": "@shelf/prettier-config",
   "jest": {
-    "preset": "./jest-preset.js"
+    "preset": "./jest-preset.js",
+    "transform": {
+      "^.+\\.(t|j)sx?$": [
+        "@swc/jest",
+        {
+          "jsc": {
+            "parser": {
+              "syntax": "typescript"
+            }
+          },
+          "sourceMaps": false
+        }
+      ]
+    }
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "3.980.0",
@@ -49,12 +58,11 @@
     "jest-environment-node": "30.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.28.6",
-    "@babel/core": "7.28.6",
-    "@shelf/babel-config": "3.0.0",
     "@shelf/eslint-config": "7.1.0",
     "@shelf/prettier-config": "1.0.0",
     "@shelf/tsconfig": "0.1.0",
+    "@swc/core": "1.16.1",
+    "@swc/jest": "0.2.39",
     "@types/cwd": "^0.10.2",
     "@types/jest": "30.0.0",
     "@types/node": "25",
