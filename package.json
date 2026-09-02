@@ -23,14 +23,13 @@
   "scripts": {
     "build": "rm -rf lib/ && tsc --project tsconfig.build.json",
     "coverage": "jest --coverage",
-    "lint": "pnpm lint:ci --fix",
-    "lint:ci": "eslint . --quiet",
+    "lint": "oxfmt && eslint . --quiet --fix",
+    "lint:ci": "oxfmt --check && eslint . --quiet",
     "prepack": "pnpm build",
     "test": "export ENVIRONMENT=local && jest tests",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch"
   },
-  "prettier": "@shelf/prettier-config",
   "jest": {
     "preset": "./jest-preset.js",
     "transform": {
@@ -59,7 +58,7 @@
   },
   "devDependencies": {
     "@shelf/eslint-config": "7.2.0",
-    "@shelf/prettier-config": "1.0.0",
+    "@shelf/prettier-config": "1.1.1",
     "@shelf/tsconfig": "0.2.0",
     "@swc/core": "1.16.1",
     "@swc/jest": "0.2.39",
@@ -70,7 +69,7 @@
     "husky": "9.1.7",
     "jest": "30.2.0",
     "lint-staged": "16.2.7",
-    "prettier": "3.8.1",
+    "oxfmt": "0.64.0",
     "typescript": "6.0.3"
   },
   "engines": {
@@ -81,9 +80,10 @@
   },
   "lint-staged": {
     "*.{html,md,yml}": [
-      "prettier --write"
+      "oxfmt --no-error-on-unmatched-pattern"
     ],
     "*.{ts,js,json}": [
+      "oxfmt --no-error-on-unmatched-pattern",
       "eslint --fix"
     ]
   },

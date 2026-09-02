@@ -1,4 +1,4 @@
-# jest-dynamodb [![CircleCI](https://circleci.com/gh/shelfio/jest-dynamodb/tree/master.svg?style=svg)](https://circleci.com/gh/shelfio/jest-dynamodb/tree/master) ![](https://img.shields.io/badge/code_style-prettier-ff69b4.svg) [![npm (scoped)](https://img.shields.io/npm/v/@shelf/jest-dynamodb.svg)](https://www.npmjs.com/package/@shelf/jest-dynamodb)
+# jest-dynamodb [![CircleCI](https://circleci.com/gh/shelfio/jest-dynamodb/tree/master.svg?style=svg)](https://circleci.com/gh/shelfio/jest-dynamodb/tree/master) [![npm (scoped)](https://img.shields.io/npm/v/@shelf/jest-dynamodb.svg)](https://www.npmjs.com/package/@shelf/jest-dynamodb)
 
 > Jest preset to run DynamoDB Local
 
@@ -79,7 +79,9 @@ The default value is defined at https://github.com/rynop/dynamodb-local/blob/2e6
 #### 2.2 Examples
 
 You can set up tables as an object:
- > Whole list of config properties can be found [here](https://github.com/shelfio/jest-dynamodb/blob/6c64dbd4ee5a68230469ea14cbfb814470521197/src/types.ts#L80-L87)
+
+> Whole list of config properties can be found [here](https://github.com/shelfio/jest-dynamodb/blob/6c64dbd4ee5a68230469ea14cbfb814470521197/src/types.ts#L80-L87)
+
 ```js
 /**
  * @type {import('@shelf/jest-dynamodb/lib').Config}')}
