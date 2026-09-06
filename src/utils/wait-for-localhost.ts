@@ -11,7 +11,7 @@ export default function waitForLocalhost(port: number, host: string): Promise<vo
     const retry = () => setTimeout(main, 200);
     const main = () => {
       const request = http.request(
-        {method: 'GET', port, host, path: '/'},
+        {method: 'GET', port, host, path: '/', headers: {Connection: 'close'}},
         (response: {statusCode: number}) => {
           if (response.statusCode === 400) {
             return resolve();
