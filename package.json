@@ -23,6 +23,7 @@
   "scripts": {
     "build": "rm -rf lib/ && tsc --project tsconfig.build.json",
     "coverage": "jest --coverage",
+    "find-deadcode": "knip --no-progress",
     "lint": "oxfmt && eslint . --quiet --fix",
     "lint:ci": "oxfmt --check && eslint . --quiet",
     "prepack": "pnpm build",
@@ -68,6 +69,7 @@
     "eslint": "10.8.0",
     "husky": "9.1.7",
     "jest": "30.2.0",
+    "knip": "6.38.0",
     "lint-staged": "16.2.7",
     "oxfmt": "0.64.0",
     "typescript": "6.0.3"
