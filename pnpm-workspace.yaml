@@ -5,3 +5,4 @@ lockfile: true
 allowBuilds:
   '@swc/core': true
   unrs-resolver: false
+pmOnFail: ignore
