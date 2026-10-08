@@ -27,6 +27,7 @@
     "lint": "oxfmt && eslint . --quiet --fix",
     "lint:ci": "oxfmt --check && eslint . --quiet",
     "prepack": "pnpm build",
+    "prepare": "husky",
     "test": "export ENVIRONMENT=local && jest tests",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch"
