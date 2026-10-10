@@ -66,13 +66,14 @@
     "@types/cwd": "^0.10.2",
     "@types/jest": "30.0.0",
     "@types/node": "25",
+    "@typescript/native": "npm:typescript@7.0.2",
     "eslint": "10.8.0",
     "husky": "9.1.7",
     "jest": "30.2.0",
     "knip": "6.38.0",
     "lint-staged": "16.2.7",
     "oxfmt": "0.64.0",
-    "typescript": "6.0.3"
+    "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "engines": {
     "node": ">=22"
