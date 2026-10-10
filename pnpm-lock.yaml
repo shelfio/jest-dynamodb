@@ -18,9 +18,6 @@ importers:
       '@aws-sdk/lib-dynamodb':
         specifier: 3.980.0
         version: 3.980.0(@aws-sdk/client-dynamodb@3.980.0)
-      '@aws-sdk/util-dynamodb':
-        specifier: 3.980.0
-        version: 3.980.0(@aws-sdk/client-dynamodb@3.980.0)
       '@jest/environment':
         specifier: 30.2.0
         version: 30.2.0
