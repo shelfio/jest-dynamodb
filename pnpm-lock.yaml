@@ -5,7 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  dynamodb-local>tar: 7.5.7
   eslint-plugin-barrel-files>oxc-resolver: 11.19.1
 
 importers:
@@ -28,8 +27,8 @@ importers:
         specifier: 4.4.3
         version: 4.4.3(supports-color@8.1.1)
       dynamodb-local:
-        specifier: 0.0.36
-        version: 0.0.36(supports-color@8.1.1)
+        specifier: 0.0.38
+        version: 0.0.38(supports-color@8.1.1)
       jest-environment-node:
         specifier: 30.2.0
         version: 30.2.0
@@ -1122,6 +1121,9 @@ packages:
   '@smithy/core@3.32.0':
     resolution: {integrity: sha512-NAiCSC78fzbNIEWoheoF74Ob5ZorLijCHpMY26Fqvqg/+9LuyIqMfHDg2p8Yk1rqOyowtiL3y7WX0AW+teL6zw==}
     engines: {node: '>=18.0.0'}
+    deprecated: |-
+      Deprecated due to a bug in custom logger data redaction. Upgrade to the latest version. If you used a custom logger with this
+        version, review your logs and rotate any credentials or other secrets. See https://github.com/aws/aws-sdk-js-v3/issues/8393.
 
   '@smithy/credential-provider-imds@4.5.0':
     resolution: {integrity: sha512-2jsPi+7Zv2hSzD9IXR9D7DTqSn7mv4XalzRm+bESh53jiaUS3NKEUbpQFTJP0HhQy9qzZvluxQ3yS24zdRrqsA==}
@@ -2062,8 +2064,8 @@ packages:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
 
-  dynamodb-local@0.0.36:
-    resolution: {integrity: sha512-rg8ovWHJ23Z8Y807RF5L04IGUdaVBaBjx04AGNI39qSZwdvqaDuV/XlyR/yVPc0yVYRpSX9QTidtSAN+8TCqNw==}
+  dynamodb-local@0.0.38:
+    resolution: {integrity: sha512-lQrckl3NSJ/PQ3mk9NOvA/n9pUqVO6YiFf4gZc7m7wz8S++Dui/WJjX/6ACA1Dw4BFXql5OhwbtXP0UsN4/BRw==}
     engines: {node: '>= 0.12.0'}
 
   eastasianwidth@0.2.0:
@@ -3643,10 +3645,9 @@ packages:
     resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
 
-  tar@7.5.7:
-    resolution: {integrity: sha512-fov56fJiRuThVFXD6o6/Q354S7pnWMJIVlDBYijsTNx6jKSE4pvrDTs6lUnmGvNyfJwFQQwWy3owKz1ucIhveQ==}
+  tar@7.5.22:
+    resolution: {integrity: sha512-MFO/QzvtAOmJbkhOaCTvbGcFN9L9b+JunIsDwaKljSOdcLMea3NJ1k9Usz/rjdfSXTq4dfzfeS7W4p4YOAAHeA==}
     engines: {node: '>=18'}
-    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   test-exclude@6.0.0:
     resolution: {integrity: sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w==}
@@ -5944,10 +5945,10 @@ snapshots:
       es-errors: 1.3.0
       gopd: 1.2.0
 
-  dynamodb-local@0.0.36(supports-color@8.1.1):
+  dynamodb-local@0.0.38(supports-color@8.1.1):
     dependencies:
       debug: 4.4.3(supports-color@8.1.1)
-      tar: 7.5.7
+      tar: 7.5.22
     transitivePeerDependencies:
       - supports-color
 
@@ -7960,7 +7961,7 @@ snapshots:
 
   tapable@2.3.3: {}
 
-  tar@7.5.7:
+  tar@7.5.22:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
