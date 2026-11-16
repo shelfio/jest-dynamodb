@@ -1,5 +1,4 @@
 overrides:
-  'dynamodb-local>tar': 7.5.22
   'eslint-plugin-barrel-files>oxc-resolver': 11.19.1
 lockfile: true
 allowBuilds:
